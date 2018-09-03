@@ -1,0 +1,14 @@
+{
+  "name": "gamer-u-app-backend",
+  "version": "1.0.0",
+  "description": "Backend for GamerU app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexandra Hernandez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
