@@ -4,13 +4,18 @@
   "description": "Backend for GamerU app.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "author": "Alexandra Hernandez",
   "license": "ISC",
   "dependencies": {
     "adorable-avatars": "^0.2.1",
     "body-parser": "^1.18.3",
+    "concurrently": "^4.0.1",
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.3",
     "mongodb": "^3.1.4",

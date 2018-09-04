@@ -26,25 +26,25 @@ passport.use(
         // realm: 'http://localhost:5000/',
         apiKey: keys.steamAPIKey
     },
-        (identifier, profile, done) => {
+        async (identifier, profile, done) => {
             // vv RESULTS IN https://steamcommunity.com/openid/id/76561198417983255
             // console.log(identifier);
             // vv GIVES ME USER'S STEAM ID
             // console.log(profile.id);
 
-            User.findOne({ steamId: profile.id })
-                .then((existingUser) => {
-                    if (existingUser) {
-                        done(null, existingUser);
-                    } else {
-                        new User({ 
-                            steamId: profile.id,
-                            username: profile.displayName,
-                            avatar: profile._json.avatar
-                        }).save()
-                            .then((user) => done(null, user));
-                    }
-                });
+            const existingUser = await User.findOne({ steamId: profile.id });
+                
+            if (existingUser) {
+                done(null, existingUser);
+            } else {
+                await new User({ 
+                    steamId: profile.id,
+                    username: profile.displayName,
+                    avatar: profile._json.avatar
+                }).save()
+                    .then((user) => done(null, user));
+            }
+            
 
         }
         //, function (identifier, profile, done) {
