@@ -9,6 +9,13 @@
   "author": "Alexandra Hernandez",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "adorable-avatars": "^0.2.1",
+    "body-parser": "^1.18.3",
+    "cookie-session": "^2.0.0-beta.3",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.4",
+    "mongoose": "^5.2.12",
+    "passport": "^0.4.0",
+    "passport-steam": "^1.0.10"
   }
 }
