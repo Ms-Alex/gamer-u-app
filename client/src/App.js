@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import steamButton from './steam_butt.png'
+import steamButton from './steam_butt.png';
 import './App.css';
 
 
@@ -9,11 +8,10 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to GamerU</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          To get started, please login through your Steam account.
         </p>
 
         <a href="/auth/steam">

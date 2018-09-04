@@ -37,12 +37,12 @@ passport.use(
             if (existingUser) {
                 done(null, existingUser);
             } else {
-                await new User({ 
+                const user = await new User({ 
                     steamId: profile.id,
                     username: profile.displayName,
                     avatar: profile._json.avatar
-                }).save()
-                    .then((user) => done(null, user));
+                }).save();
+                done(null, user);
             }
             
 
