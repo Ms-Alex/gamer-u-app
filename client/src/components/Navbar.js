@@ -1,8 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import steamLogo from '../steam_logo.png'
+import steamLogo from '../steam_logo.png';
+import '../index.css'
+
 
 class Navbar extends React.Component {
+
 
     loggedInDropDown = () => {
         return (
@@ -21,7 +24,7 @@ class Navbar extends React.Component {
                     Welcome, {this.props.auth.username}!&emsp;
                 </li>
                 <li>
-                    {/* <a className="dropdown-trigger" data-target="dropdown1">
+                    {/* <a className="" >
                         <img src={`http://api.adorable.io/avatars/50/${this.props.auth.steamId}.png`} alt="Avatar Img" style={{ borderRadius: '50%', verticalAlign: 'middle' }} />
                         <i className="material-icons right">arrow_drop_down</i>
                     </a> */}
@@ -69,13 +72,10 @@ class Navbar extends React.Component {
                 {this.loggedInDropDown()}
 
                 <nav>
-                    <div className="nav-wrapper">
+                    <div className="nav-wrapper purple darken-1">
                         <a className="left brand-logo">&emsp; GamerU</a>
 
                         <ul className="right">
-                            {/* <li>
-                            <a>Login With Steam</a>
-                        </li> */}
 
                             {this.renderView()}
 
