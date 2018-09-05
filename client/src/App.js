@@ -1,22 +1,33 @@
 import React, { Component } from 'react';
-import steamButton from './steam_butt.png';
-import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import './App.css'
+
+
+import Landing from './containers/Landing';
+import Navbar from './components/Navbar';
+
+// const Landing = () => <h2>NOT logged in! Here is Landing Page & sign in butt.</h2>
+const Home = () => <h2>Logged in! Here is Home Page</h2>
+const UserProfile = () => <h2>User Page</h2>
+const GameProfile = () => <h2>Game Page</h2>
 
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to GamerU</h1>
-        </header>
-        <p className="App-intro">
-          To get started, please login through your Steam account.
-        </p>
 
-        <a href="/auth/steam">
-            <img src={steamButton} alt="Steam Button" />
-        </a>
+        <Router>
+          <React.Fragment>
+            <Navbar />
+            
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/user-profile" component={UserProfile} />
+            <Route exact path="/game-profile" component={GameProfile} />
+
+          </React.Fragment>
+        </Router>
 
       </div>
     );
