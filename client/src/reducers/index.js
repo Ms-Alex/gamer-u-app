@@ -1,8 +1,11 @@
 import { combineReducers } from 'redux';
 import authReducer from './authReducer';
-import recGamesReducer from './recGamesReducer';
+// import recGamesReducer from './recGamesReducer';
+import recentsReducer from './recentsReducer';
+import ownedReducer from './ownedReducer';
 
 export default combineReducers({
     auth: authReducer,
-    recommendedGames: recGamesReducer,
+    recentGames: recentsReducer,
+    ownedGames: ownedReducer
 });

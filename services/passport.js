@@ -40,7 +40,8 @@ passport.use(
                 const user = await new User({ 
                     steamId: profile.id,
                     username: profile.displayName,
-                    avatar: profile._json.avatar
+                    // avatar: profile._json.avatar
+                    avatar: `http://api.adorable.io/avatars/50/${profile.id}.png`
                 }).save();
                 done(null, user);
             }

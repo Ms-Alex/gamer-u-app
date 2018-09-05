@@ -3,21 +3,26 @@ import React from 'react';
 
 // import RecommendedGames from '../components/RecommendedG';
 
+import RecentlyPlayed from '../components/RecentlyPlayed';
+
 const Home = (props) => {
+
 
     return (
 
         <div className="container">
-            <h2>Welocme, user </h2>
+
             <div>
-                {/* <RecommendedGames steamId={this.props.auth.steamId} /> */}
-
-
+                {/* <RecommendedGames /> */}
             </div>
-            {/* <Recently Played /> */}
+
+            <div>
+                <RecentlyPlayed />
+            </div>
+
         </div>
     )
 };
 
 
-export default Home;
+export default (Home);

@@ -5,10 +5,11 @@ import * as actions from './actions'
 
 import Landing from './containers/Landing';
 import Navbar from './components/Navbar';
-// import Home from './containers/Home';
+import Home from './containers/Home';
+import UserProfile from './containers/UserProfile';
 
-const Home = () => <h2>Logged in! Here is Home Page</h2>
-const UserProfile = () => <h2>User Page</h2>
+
+// const UserProfile = () => <h2>User Page</h2>
 const GameProfile = () => <h2>Game Page</h2>
 
 class App extends Component {

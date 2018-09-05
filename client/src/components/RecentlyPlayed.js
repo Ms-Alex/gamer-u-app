@@ -4,13 +4,13 @@ import * as actions from '../actions';
 import GameCard from '../components/GameCard';
 
 
-class RecommendedG extends React.Component {
+class RecentlyPlayed extends React.Component {
 
     componentDidMount() {
-        if ( this.props.auth !== null ) {
+        if (this.props.auth !== null) {
             this.props.fetchUser();
 
-            this.props.fetchRecommendedGames(this.props.auth.steamId);
+            this.props.fetchRecentlyPlayed(this.props.auth.steamId);
 
         }
     }
@@ -26,10 +26,10 @@ class RecommendedG extends React.Component {
 
         return (
             <div>
-                <h3>Your Recommended Games</h3>
+                <h3>Your Recently Played Games</h3>
                 <ul>
-                    {this.gamesMapper(this.props.recommendedGames)}
-                </ul>                
+                    {this.gamesMapper(this.props.recentGames)}
+                </ul>
             </div>
         )
     }
@@ -38,8 +38,8 @@ class RecommendedG extends React.Component {
 function mapStateToProps(state) {
     return {
         auth: state.auth,
-        recommendedGames: state.recommendedGames
+        recentGames: state.recentGames
     }
 }
 
-export default connect(mapStateToProps, actions)(RecommendedG);
+export default connect(mapStateToProps, actions)(RecentlyPlayed);
