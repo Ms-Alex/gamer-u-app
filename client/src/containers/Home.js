@@ -1,14 +1,23 @@
 import React from 'react';
+// import { connect } from 'react-redux';
 
+// import RecommendedGames from '../components/RecommendedG';
 
-const React = (props) => {
+const Home = (props) => {
+
     return (
+
         <div className="container">
-            <h2>Welocme, username</h2>
-            {/* <RecommendedGames /> */}
+            <h2>Welocme, user </h2>
+            <div>
+                {/* <RecommendedGames steamId={this.props.auth.steamId} /> */}
+
+
+            </div>
             {/* <Recently Played /> */}
         </div>
     )
 };
 
-export default React;
+
+export default Home;

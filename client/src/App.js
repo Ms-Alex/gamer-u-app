@@ -5,6 +5,7 @@ import * as actions from './actions'
 
 import Landing from './containers/Landing';
 import Navbar from './components/Navbar';
+// import Home from './containers/Home';
 
 const Home = () => <h2>Logged in! Here is Home Page</h2>
 const UserProfile = () => <h2>User Page</h2>

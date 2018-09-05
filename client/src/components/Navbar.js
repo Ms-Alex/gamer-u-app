@@ -1,36 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import steamLogo from '../steam_logo.png';
 import '../index.css'
 
 
 class Navbar extends React.Component {
 
-
-    loggedInDropDown = () => {
-        return (
-            <ul id="dropdown1" className="dropdown-content">
-                <li><a >Profile</a></li>
-                <li className="divider"></li>
-                <li><a href="/api/logout">Logout</a></li>
-            </ul>
-        )
-    }
-
     renderLoggedIn = () => {
         return (
             <React.Fragment>
                 <li>
-                    Welcome, {this.props.auth.username}!&emsp;
-                </li>
-                <li>
-                    {/* <a className="" >
+                    <Link to="/user-profile">
+
+                        Welcome, {this.props.auth.username}!&emsp;
+                    
                         <img src={`http://api.adorable.io/avatars/50/${this.props.auth.steamId}.png`} alt="Avatar Img" style={{ borderRadius: '50%', verticalAlign: 'middle' }} />
-                        <i className="material-icons right">arrow_drop_down</i>
-                    </a> */}
-                    <a>
-                        <img src={`http://api.adorable.io/avatars/50/${this.props.auth.steamId}.png`} alt="Avatar Img" style={{ borderRadius: '50%', verticalAlign: 'middle' }} />
-                    </a>
+                    </Link>
                     
                 </li>
                 <li>
@@ -64,16 +50,13 @@ class Navbar extends React.Component {
     }
 
     render() {
-        console.log(this.props)
 
         return (
             <React.Fragment>
 
-                {this.loggedInDropDown()}
-
                 <nav>
                     <div className="nav-wrapper purple darken-1">
-                        <a className="left brand-logo">&emsp; GamerU</a>
+                        <Link to={ this.props.auth ? '/home' : '/' } className="left brand-logo">&emsp; GamerU</Link>
 
                         <ul className="right">
 
