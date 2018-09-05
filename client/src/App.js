@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import './App.css'
-
 
 import Landing from './containers/Landing';
 import Navbar from './components/Navbar';
@@ -15,12 +13,12 @@ const GameProfile = () => <h2>Game Page</h2>
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
 
         <Router>
           <React.Fragment>
             <Navbar />
-            
+
             <Route exact path="/" component={Landing} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/user-profile" component={UserProfile} />

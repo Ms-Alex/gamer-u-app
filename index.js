@@ -6,6 +6,7 @@ const passport = require('passport')
 const keys = require('./config/keys');
 // const avatarsMiddleware = require('adorable-avatars');
 // ORDER MATTERS: USER MODELS BEFORE PASSPORT
+const avatarsMiddleware = require('adorable-avatars');
 require('./models/User');
 require('./services/passport');
 
@@ -14,6 +15,10 @@ const authRoutes = require('./routes/authRoutes')
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 const app = express();
+app.use(bodyParser.json());
+
+authRoutes(app);
+app.use('/myAvatars', () => avatarsMiddleware);
 
 // MAKE A COOKIE
 app.use(
@@ -29,10 +34,6 @@ app.use(passport.session());
 
 // let router = express.Router();
 // app.use('/myAvatars', avatarsMiddleware);
-
-app.use(bodyParser.json());
-
-authRoutes(app);
 
 const port = process.env.PORT || 5000;
 // PORT ALSO REFERENCED IN PASSPORT.JS

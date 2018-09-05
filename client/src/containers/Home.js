@@ -3,7 +3,7 @@ import React from 'react';
 
 const React = (props) => {
     return (
-        <div>
+        <div className="container">
             <h2>Welocme, username</h2>
             {/* <RecommendedGames /> */}
             {/* <Recently Played /> */}

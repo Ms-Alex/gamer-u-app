@@ -40,7 +40,8 @@ passport.use(
                 const user = await new User({ 
                     steamId: profile.id,
                     username: profile.displayName,
-                    avatar: profile._json.avatar
+                    // avatar: profile._json.avatar
+                    avatar: `http://localhost:5000/myAvatars/202/${profile.id}`
                 }).save();
                 done(null, user);
             }
