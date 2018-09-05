@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from './actions'
 
 import Landing from './containers/Landing';
 import Navbar from './components/Navbar';
 
-// const Landing = () => <h2>NOT logged in! Here is Landing Page & sign in butt.</h2>
 const Home = () => <h2>Logged in! Here is Home Page</h2>
 const UserProfile = () => <h2>User Page</h2>
 const GameProfile = () => <h2>Game Page</h2>
 
-
 class App extends Component {
+
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
       <div>
@@ -32,4 +37,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, actions)(App);
