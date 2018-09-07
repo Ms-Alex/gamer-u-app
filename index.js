@@ -1,8 +1,9 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
-const passport = require('passport')
+const passport = require('passport');
 const keys = require('./config/keys');
 // const avatarsMiddleware = require('adorable-avatars');
 // ORDER MATTERS: USER MODELS BEFORE PASSPORT
@@ -15,6 +16,7 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 
 // MAKE A COOKIE

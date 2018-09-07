@@ -7,12 +7,8 @@ import GameCard from '../components/GameCard';
 class RecommendedG extends React.Component {
 
     componentDidMount() {
-        if ( this.props.auth !== null ) {
-            this.props.fetchUser();
 
             this.props.fetchRecommendedGames(this.props.auth.steamId);
-
-        }
     }
 
     gamesMapper = (gamesArr) => {

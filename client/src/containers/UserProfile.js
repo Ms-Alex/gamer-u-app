@@ -1,15 +1,19 @@
 import React from 'react';
 
-import OwnedGames from '../components/OwnedGames'
+import GamesOwned from '../seeds/gamesOwned';
+import UserProHeader from '../components/UserProHeader';
+// import { connect } from 'net';
+// import OwnedGames from '../components/OwnedGames'
 
 const UserProfile = () => {
 
     return (
-        <div>
-            <h2>Profile Page Header</h2>
+        <div className="container">
+            <UserProHeader />
 
             <div>
-                <OwnedGames />
+
+                <GamesOwned />
 
             </div>
         </div>
@@ -17,4 +21,5 @@ const UserProfile = () => {
     
 }
 
-export default (UserProfile);
+
+export default UserProfile;

@@ -1,40 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import * as actions from '../actions';
 // import GameCard from '../components/GameCard';
 
 class OwnedGames extends React.Component {
-    state = {
-        games: []
-    }
 
     componentDidMount() {
-        if (this.props.auth !== null) {
-            this.props.fetchUser();
-
-            this.props.fetchOwnedGames(this.props.auth.steamId).then(() => this.fetchGamesInfo())
+        if (this.props.auth) {
 
         }
+
+
     }
 
-    fetchGamesInfo = () => {
-        let gameInfoArr = this.props.ownedGames.map(game => async (game) => {
-            const res = await axios.get(`https://store.steampowered.com/api/appdetails/?appids=${game.appid}`);
+    // fetchGamesInfo = () => {
+    //     return this.props.ownedGames.map(game => async (game) => {
+    //         const res = await axios.get(`https://store.steampowered.com/api/appdetails/?appids=${game.appid}`);
 
-            console.log(res[`${game.appid}`].data);
-            return res[`${game.appid}`].data
-        });
-        console.log(gameInfoArr);
-        this.setState(
-            {
-                games: gameInfoArr
-            }
-        )
-    }
+    //         console.log(res[`${game.appid}`].data);
+
+    //         return res[`${game.appid}`].data
+    //     });
+        
+    // }
 
     gamesMapper = (gamesArr) => {
-        return gamesArr.map(game => <li>
+        return gamesArr.map(game => <li key={game.appid} >
             <div>
                 <h5>{game.name}</h5>
                 <img src={game.header_image} alt={game.name} />
@@ -42,16 +33,25 @@ class OwnedGames extends React.Component {
         </li>)
     }
 
+    renderGamesList = () => {
+        return (
+            <ul>
+                {this.gamesMapper(this.props.ownedGames)}
+            </ul>
+        )
+    }
+
     render() {
-        console.log(this.props.ownedGames);
-        console.log(this.state.games);
+
         return (
             <div>
                 <h3>Your Owned Games</h3>
 
-                <ul>
-                    {this.gamesMapper(this.state.games)}
-                </ul>
+                {/* <ul> */}
+                    {/* {this.props.ownedGames === [] ? "No owned games" : this.renderGamesList() } */}
+                {/* </ul> */}
+
+
             </div>
         )
     }
@@ -60,7 +60,7 @@ class OwnedGames extends React.Component {
 function mapStateToProps(state) {
     return {
         auth: state.auth,
-        ownedGames: state.ownedGames
+
     }
 }
 

@@ -14,13 +14,18 @@
   "license": "ISC",
   "dependencies": {
     "adorable-avatars": "^0.2.1",
+    "ajv": "^6.5.3",
     "body-parser": "^1.18.3",
     "concurrently": "^4.0.1",
     "cookie-session": "^2.0.0-beta.3",
+    "cors": "^2.8.4",
     "express": "^4.16.3",
+    "jquery": "^3.3.1",
     "mongodb": "^3.1.4",
     "mongoose": "^5.2.12",
     "passport": "^0.4.0",
-    "passport-steam": "^1.0.10"
+    "passport-steam": "^1.0.10",
+    "steamapi": "^2.0.2",
+    "webpack": "^3.11.0"
   }
 }
