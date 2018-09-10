@@ -24,11 +24,11 @@ class FeaturedGames extends React.Component {
 
     featMapper = (arr) => {
         let gamesCarousel = []
-        arr.slice(0, 1).map(game => gamesCarousel = [...gamesCarousel, <div key={game.id} className="carousel-item active">
+        arr.slice(0, 1).forEach(game => gamesCarousel = [...gamesCarousel, <div key={game.id} className="carousel-item active">
             <img className="d-block w-100" src={game.large_capsule_image} alt="game.name"></img>
     </div>])
 
-        arr.slice(1, 5).map(game => gamesCarousel = [...gamesCarousel, <div key={game.id} className="carousel-item">
+        arr.slice(1, 5).forEach(game => gamesCarousel = [...gamesCarousel, <div key={game.id} className="carousel-item">
             <img className="d-block w-100" src={game.large_capsule_image} alt="game.name"></img>
         </div>])
         
@@ -37,6 +37,7 @@ class FeaturedGames extends React.Component {
 
 
     render() {
+        console.log(this.state.featGames);
         return (
             <div  >
                 <h2 className="d-flex justify-content-center">Steam's Top Trending Games</h2>

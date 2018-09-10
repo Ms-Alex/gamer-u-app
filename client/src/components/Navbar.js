@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 import steamLogo from '../steam_logo.png';
 import '../index.css';
@@ -37,11 +38,10 @@ class Navbar extends React.Component {
                 </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <Link className="dropdown-item" to="/user-profile">Profile</Link>
-                        <a className="dropdown-item" href="/api/logout">Logout</a>
+                        <a className="dropdown-item" href="/api/logout" onClick={(e) => this.logoutHandler(e)} >Logout</a>
+                        {/* <p className="dropdown-item" onClick={() => this.logoutHandler()} >Logout</p> */}
                     </div>
                 </li>
-
-
                 
 
 
@@ -49,10 +49,15 @@ class Navbar extends React.Component {
         )
     }
 
+
+    logoutHandler = () => {
+        axios.patch(`/api/users/${this.props.auth._id}`, { inGame: false })
+    }
+
     renderLoggedOut = () => {
 
         return (
-            <li className="nav-item navbar-text" >
+            <li className="nav-item navbar-text">
                 <a href="/auth/steam">
                     Login via Steam! &emsp; <img src={steamLogo} alt="Steam Logo" style={{ height: '60px', width: '60px', verticalAlign: 'middle' }} />
                 </a> &emsp;
@@ -63,7 +68,7 @@ class Navbar extends React.Component {
     renderView = () => {
         switch (this.props.auth) {
             case null:
-                return;
+                return this.renderLoggedOut();
             case false:
                 return this.renderLoggedOut();
             default:
@@ -73,6 +78,7 @@ class Navbar extends React.Component {
 
     render() {
         console.log(this.props.auth);
+
         return (
             <React.Fragment>
 
@@ -102,9 +108,6 @@ class Navbar extends React.Component {
                         </div>
 
                     </div>
-
-
-                            {/* {this.renderView()} */}
 
 
 

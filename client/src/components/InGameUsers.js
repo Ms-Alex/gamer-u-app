@@ -4,17 +4,6 @@ import { connect } from 'react-redux';
 
 class InGameUsers extends React.Component {
 
-    filterUsers = () => {
-
-        if (this.props.auth && this.props.auth.steamId) {
-            console.log(this.props.auth)
-            let newArr = this.props.allUsers.filter(user => user.steamId !== this.props.auth.steamId)
-            this.setState({
-                filteredUsers: newArr
-            })
-        }
-        
-    }
 
     usersMapper = () => {
 
