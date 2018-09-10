@@ -48,7 +48,7 @@ let server = app.listen(port, () => {
 
 
 
-let io = socket.listen(server);
+let io = socket(server);
 
 io.on('connection', function (client) {
     client.on('register', handleRegister)
