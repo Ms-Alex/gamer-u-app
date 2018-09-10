@@ -6,10 +6,7 @@ import * as actions from '../actions';
 class OwnedGames extends React.Component {
 
     componentDidMount() {
-        if (this.props.auth) {
-
-        }
-
+        
 
     }
 

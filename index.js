@@ -1,16 +1,20 @@
+const _ = require('lodash')
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const socket = require('socket.io');
 const keys = require('./config/keys');
+
 // const avatarsMiddleware = require('adorable-avatars');
 // ORDER MATTERS: USER MODELS BEFORE PASSPORT
 require('./models/User');
 require('./services/passport');
 
-const authRoutes = require('./routes/authRoutes')
+const authRoutes = require('./routes/authRoutes');
+const usersRoutes = require('./routes/usersRoutes');
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
@@ -33,12 +37,39 @@ app.use(passport.session());
 
 // CALL THIS AFTER SETTING COOKIES AND PASSPORT LOGIN SETTINGS
 authRoutes(app);
-
-// let router = express.Router();
-// app.use('/myAvatars', avatarsMiddleware);
+usersRoutes(app);
 
 const port = process.env.PORT || 5000;
 // PORT ALSO REFERENCED IN PASSPORT.JS
-app.listen(port, () => {
+let server = app.listen(port, () => {
     console.log(`Server started on port ${port}`)
 });
+
+
+
+
+let io = socket.listen(server);
+
+io.on('connection', function (client) {
+    client.on('register', handleRegister)
+
+    client.on('join', handleJoin)
+
+    client.on('leave', handleLeave)
+
+    client.on('message', handleMessage)
+
+    client.on('chatrooms', handleGetChatrooms)
+
+    client.on('availableUsers', handleGetAvailableUsers)
+
+    client.on('disconnect', function () {
+        console.log('client disconnect...', client.id)
+        handleDisconnect()
+    })
+
+    client.on('error', function (err) {
+        console.log('received error from client:', client.id)
+        console.log(err)
+    })
+})

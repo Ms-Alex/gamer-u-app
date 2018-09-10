@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_RECENTLY_PLAYED } from './types';
+import { FETCH_USER, FETCH_RECENTLY_PLAYED, FETCH_FEATURED_GAMES } from './types';
 import { STEAM_API_KEY } from '../clientConfig/keys'
 
 const SteamAPI = require('steamapi');
@@ -9,6 +9,7 @@ const steam = new SteamAPI(STEAM_API_KEY);
 export const fetchUser = () => {
     return async (dispatch) => {
         const res = await axios.get('/api/current_user');
+
         dispatch({ type: FETCH_USER, payload: res.data });
     }
 };
@@ -25,6 +26,15 @@ export const fetchRecentlyPlayed = () => {
         }
     }
 };
+
+export const fetchedFeatured = () => {
+    return async dispatch => {
+        const featGames = await steam.getFeaturedGames();
+        console.log(featGames);
+        console.log('hi');
+        dispatch({ type: FETCH_FEATURED_GAMES, payload: featGames });
+    }
+}
 
 // export const fetchRecommendedGames = (userSteamId) => {
 //     return async (dispatch) => {

@@ -9,6 +9,10 @@ import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers/index';
 import reduxThunk from 'redux-thunk';
 
+// const initState = {
+//     inGame: false
+// }
+
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(

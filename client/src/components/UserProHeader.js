@@ -22,15 +22,14 @@ class UserProHeader extends React.Component {
 
                     <div class="card text-center">
                         <div class="card-header">
-                            <ul class="nav nav-pills card-header-pills">
                                 
-                                <li class="nav-item">
-                                    <img src={this.props.auth.avatar} alt="avatar" style={{ borderRadius: '50%', width: '100px', height: '100px' }} />
-                                </li>
-                                <li class="nav-item">
-                                    <h3>{this.props.auth.username}'s Profile Page</h3>
-                                </li>
-                            </ul>
+                            <img src={this.props.auth.avatar} alt="avatar" style={{ borderRadius: '50%', width: '80px', height: '80px' }} />
+                                
+                        </div>
+
+                        <div class="card-body">
+                            <h4 class="card-title">{this.props.auth.username}'s Profile Page</h4>
+                            {/* <p class="card-text">I like playing RPGs</p> */}
                         </div>
                     </div>
 
