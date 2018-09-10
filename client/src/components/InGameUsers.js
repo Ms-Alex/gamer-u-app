@@ -1,38 +1,39 @@
 import React from 'react';
-import axios from 'axios';
+
 import { connect } from 'react-redux';
 
 class InGameUsers extends React.Component {
-    state = {
-        users: []
-    }
 
-    componentDidMount() {
-        axios('/api/users').then(data => {
-            let filteredUsers = data.data.filter( user => user.steamId !== this.props.auth.steamId)
+    filterUsers = () => {
+
+        if (this.props.auth && this.props.auth.steamId) {
+            console.log(this.props.auth)
+            let newArr = this.props.allUsers.filter(user => user.steamId !== this.props.auth.steamId)
             this.setState({
-                users: filteredUsers
+                filteredUsers: newArr
             })
         }
-        )
+        
     }
 
     usersMapper = () => {
-        // let filteredArr = this.state.users.filter( user => user.steamId !== this.props.auth.steamId)
-        // return filteredArr.map(user => <li className="list-group-item">
-        //     {user.username}
-        // </li> )
-        
-        return this.state.users.map(user => <li className="list-group-item">
+
+        return this.props.allUsers.map(user => <li className="list-group-item">
             {user.username} &emsp; <i class="material-icons">
                 message </i>
         </li>)
     }
 
     render() {
-        console.log(this.state.users)
+
         return (
             <div>
+
+                {this.props.auth !== null ? console.log('props ', this.props.auth.username) : console.log('props ',this.props)}
+
+                {console.log('auth: ', this.props.auth)}
+                {console.log('users: ', this.props.allUsers)}
+        
 
                 <div className="card card-nav-tabs" style={{ width: "20rem" }}>
                     <br />
@@ -40,7 +41,7 @@ class InGameUsers extends React.Component {
                         <h4>Message Online Users:</h4>
                     </div>
                     <ul className="list-group list-group-flush">
-                        {this.state.users.length === 0 ? <li className="list-group-item">No online users</li> : this.usersMapper()}
+                        {this.props.allUsers.length === 0 ? <li className="list-group-item">No online users</li> : this.usersMapper()}
                     </ul>
                 </div>
 
@@ -50,7 +51,10 @@ class InGameUsers extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return { auth: state.auth }
+    return { 
+        auth: state.auth,
+        allUsers: state.allUsers 
+    }
 }
 
 export default connect(mapStateToProps)(InGameUsers);
