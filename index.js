@@ -20,7 +20,7 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ credentials: true, origin: 'http://localhost:5000' }));
 app.use(bodyParser.json());
 
 // MAKE A COOKIE
@@ -50,26 +50,40 @@ let server = app.listen(port, () => {
 
 let io = socket(server);
 
-io.on('connection', function (client) {
-    client.on('register', handleRegister)
+io.on('connection', function (socket) {
 
-    client.on('join', handleJoin)
+    console.log(socket.id);
 
-    client.on('leave', handleLeave)
-
-    client.on('message', handleMessage)
-
-    client.on('chatrooms', handleGetChatrooms)
-
-    client.on('availableUsers', handleGetAvailableUsers)
-
-    client.on('disconnect', function () {
-        console.log('client disconnect...', client.id)
-        handleDisconnect()
+    socket.on('SEND_MESSAGE', function (data) {
+        io.emit('RECEIVE_MESSAGE', data);
     })
 
-    client.on('error', function (err) {
-        console.log('received error from client:', client.id)
-        console.log(err)
-    })
+    // client.on('subscribeToTimer', (interval) => {
+    //     console.log('client is subscribing to timer with interval ', interval);
+    //     setInterval(() => {
+    //         client.emit('timer', new Date());
+    //     }, interval);
+    // });
+
+    // client.on('register', handleRegister)
+
+    // client.on('join', handleJoin)
+
+    // client.on('leave', handleLeave)
+
+    // client.on('message', handleMessage)
+
+    // client.on('chatrooms', handleGetChatrooms)
+
+    // client.on('availableUsers', handleGetAvailableUsers)
+
+    // client.on('disconnect', function () {
+    //     console.log('client disconnect...', client.id)
+    //     handleDisconnect()
+    // })
+
+    // client.on('error', function (err) {
+    //     console.log('received error from client:', client.id)
+    //     console.log(err)
+    // })
 })

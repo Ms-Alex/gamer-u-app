@@ -7,12 +7,13 @@ import RecentlyPlayed from '../components/RecentlyPlayed';
 import FeaturedGames from '../components/FeaturedGames';
 import InGameUsers from '../components/InGameUsers';
 import Conversations from '../components/Conversations';
+import Chat from '../components/Chat';
 
 class Home extends React.Component {
 
     componentDidMount() {
         this.props.fetchAllUsers();
-        // this.props.fetchFeatured();
+        this.props.fetchFeatured();
     }
 
     componentDidUpdate(prevProps) {
@@ -32,19 +33,29 @@ class Home extends React.Component {
                     <FeaturedGames />
                 </div>
 
+
                 <div className="row">
 
+                    <div className="col-6">
+                        <Chat />
+
+                    </div>
+
                 </div>
 
+                <div className="row">
 
-                <div style={{ float: "left" }} className="col-sm-5">
-                    <InGameUsers />
-                    <Conversations />
-                </div>
+                    <div style={{ float: "left" }} className="col-sm-5">
+                        <InGameUsers />
+                        <Conversations />
+                    </div>
 
-                <div style={{ float: "right", marginLeft: "2%" }} className="col-sm-5">
-                    <RecentlyPlayed />
+                    <div style={{ float: "right", marginLeft: "2%" }} className="col-sm-5">
+                        <RecentlyPlayed />
+                    </div>
+
                 </div>
+          
 
             </div>
         )

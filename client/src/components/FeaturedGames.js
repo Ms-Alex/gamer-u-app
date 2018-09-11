@@ -38,6 +38,7 @@ class FeaturedGames extends React.Component {
 
     render() {
         console.log(this.state.featGames);
+         
         return (
             <div  >
                 <h2 className="d-flex justify-content-center">Steam's Top Trending Games</h2>
