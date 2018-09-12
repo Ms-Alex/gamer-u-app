@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 import SteamAPI from 'steamapi';
 import { STEAM_API_KEY } from '../clientConfig/keys';
-import Parser from 'html-react-parser';
 
 
 const steam = new SteamAPI(STEAM_API_KEY);
@@ -13,7 +14,7 @@ class GameNews extends React.Component {
     }
 
     componentDidMount() {
-        // steam.getAppList().then(console.log);
+        this.props.fetchUser();
 
         steam.getGameNews(`${this.props.gameId}`)
             .then(res => this.setState({
@@ -39,17 +40,30 @@ class GameNews extends React.Component {
         }
     }
 
+    noOwned = () => {
+        return (
+            <div className="card">
+                <div className="card-body">
+                    No owned games
+                    </div>
+            </div>
+        )
+    }
+
     render() {
         
         return (
             <div>
                 <h3>Owned Games News:</h3>
-
-                {this.gameDataMapper()}
+                { this.props.auth && this.props.auth.username === 'alex3aries' ? this.gameDataMapper() : this.noOwned()}
 
             </div>
         )
     }
 }
 
-export default GameNews;
+function mapStateToProps(state) {
+    return { auth: state.auth }
+}
+
+export default connect(mapStateToProps, actions)(GameNews);

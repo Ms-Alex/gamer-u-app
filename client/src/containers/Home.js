@@ -7,26 +7,17 @@ import RecentlyPlayed from '../components/RecentlyPlayed';
 import GameNews from '../components/GameNews';
 import FeaturedGames from '../components/FeaturedGames';
 import InGameUsers from '../components/InGameUsers';
-import Conversations from '../components/Conversations';
+// import Conversations from '../components/Conversations';
 import Chat from '../components/Chat';
 
-import { STEAM_API_KEY } from '../clientConfig/keys';
-
-const SteamAPI = require('steamapi');
-const steam = new SteamAPI(STEAM_API_KEY);
 
 class Home extends React.Component {
 
     componentDidMount() {
-        // return async () => {
-            // await this.props.fetchAllUsers();
-        //     await this.props.fetchFeatured();
-        // }
+        this.props.fetchUser();
         this.props.fetchAllUsers();
         this.props.fetchFeatured();
-        // steam.getFeaturedGames(data => console.log('featGames: ', data))
 
-        // steam.getAppList().then( data => console.log('applist: ', data))
     }
 
     componentDidUpdate(prevProps) {
@@ -53,10 +44,11 @@ class Home extends React.Component {
                     <div style={{ float: "left" }} className="col-sm-5">
                         <InGameUsers />
                         <br />
+                        {/* <Conversations /> */}
+
+                        <hr />
                         <br />
-                        <Conversations />
-                        <br />
-                        <br />
+
                         <Chat />
 
                     </div>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_RECENTLY_PLAYED, FETCH_FEATURED_GAMES, FETCH_ALL_USERS, FETCH_OWNED_GAMES } from './types';
+import { FETCH_USER, FETCH_RECENTLY_PLAYED, FETCH_FEATURED_GAMES, FETCH_ALL_USERS, FETCH_OWNED_GAMES, FETCH_PENDING_REQUESTS, FETCH_SENT_REQUESTS, FETCH_FRIENDS } from './types';
 import { STEAM_API_KEY } from '../clientConfig/keys';
 
 import SteamAPI from 'steamapi';
@@ -23,10 +23,9 @@ export const fetchAllUsers = () => {
 
         dispatch({ type: FETCH_ALL_USERS, payload: newArr })
     }
-}
+};
 
 export const fetchRecentlyPlayed = () => {
-
 
     return async (dispatch) => {
         const userRes = await axios.get('/api/current_user');
@@ -46,7 +45,7 @@ export const fetchFeatured = () => {
         await steam.getFeaturedGames().then((featGames) => dispatch({ type: FETCH_FEATURED_GAMES, payload: featGames.featured_win }) )
         
     }
-}
+};
 
 export const fetchOwned = () => {
 
@@ -61,6 +60,31 @@ export const fetchOwned = () => {
                     await steam.getGameDetails(`${game.appid}`).then( data => gameData = [...gameData, data] )
                 })
             }).then( () => dispatch({ type: FETCH_OWNED_GAMES, payload: gameData }) )
+    }
+
+};
+
+
+export const fetchPending = () => {
+
+    return async dispatch => {
+        await axios.get('/api/relationships').then(res => {
+            let pends = res.data.filter( relation => relation.status === 1 )
+            dispatch({ type: FETCH_PENDING_REQUESTS, payload: pends } ) 
+        })
+    }
+
+}
+
+export const fetchFriends = (currentUserId) => {
+
+    return async dispatch => {
+        await axios.get('/api/relationships').then( res => {
+            let friendPends = res.data.filter(relation => relation.status === 2) 
+                // && (relation.userOne === currentUserId || relation.userTwo === currentUserId ))
+            dispatch({ type: FETCH_FRIENDS, payload: friendPends }) 
+            
+        } )
     }
 
 }

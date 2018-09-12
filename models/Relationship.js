@@ -5,6 +5,7 @@ const { Schema } = mongoose;
 // 0 - NONE
 // 1 - PENDING
 // 2 - FRIENDS
+// USERONE = CREATED REQUEST, RECEIVED REQUEST
 
 const relationshipSchema = new Schema({
     userOne: {
@@ -18,15 +19,7 @@ const relationshipSchema = new Schema({
     status: {
         type: Number,
         default: 0
-    },
-    whoSent: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    whoRecieved: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
     }
 });
 
-mongoose.model('relationships', realationshipSchema);
+mongoose.model('relationships', relationshipSchema);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import steamLogo from '../steam_logo.png';
@@ -11,21 +11,6 @@ class Navbar extends React.Component {
     renderLoggedIn = () => {
         return (
             <React.Fragment>
-                {/* <li>
-                    <Link to="/user-profile">
-
-                        Welcome, {this.props.auth.username}!&emsp;
-                    
-                        <img src={`http://api.adorable.io/avatars/50/${this.props.auth.steamId}.png`} alt="Avatar Img" style={{ borderRadius: '50%', verticalAlign: 'middle' }} />
-                    </Link>
-                    
-                </li>
-                <li>
-                    <a href="/api/logout">
-                        Logout
-                    </a>
-                    
-                </li> */}
 
                 
                 <li className="nav-item navbar-text">
@@ -52,7 +37,7 @@ class Navbar extends React.Component {
 
 
     logoutHandler = () => {
-        axios.patch(`/api/users/${this.props.auth._id}`, { inGame: false })
+        axios.patch(`/api/users/${this.props.auth._id}`, { inGame: false } )
     }
 
     renderLoggedOut = () => {

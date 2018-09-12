@@ -74,7 +74,7 @@ class Chat extends React.Component {
                                 <div className="card-title">Global Chat</div>
                                 <hr />
 
-                                <div className="messages" style={{ height: "60%", overflow: "auto", overflowX: "hidden", overflowY: "scroll" }}>
+                                <div className="messages" style={{ height: "65%", overflowY: "scroll" }}>
                                     {this.state.messages.map(message => {
                                         return (
                                             <div>{message.author}: {message.message}</div>

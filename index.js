@@ -11,6 +11,7 @@ const keys = require('./config/keys');
 // const avatarsMiddleware = require('adorable-avatars');
 // ORDER MATTERS: USER MODELS BEFORE PASSPORT
 require('./models/User');
+require('./models/Relationship');
 require('./services/passport');
 
 const authRoutes = require('./routes/authRoutes');
@@ -22,9 +23,9 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 const app = express();
 
 app.use(cors({ 
-    // credentials: true, 
-    origin: 'http://localhost:3000' 
-    // origin: '*' 
+    credentials: true, 
+    // origin: 'http://localhost:3000' 
+    origin: '*' 
 }));
 app.use(bodyParser.json());
 

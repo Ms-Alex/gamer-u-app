@@ -2,12 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 // import * as actions from '../actions';
 
-import { STEAM_API_KEY } from '../clientConfig/keys'
-// import { CLIENT_RENEG_WINDOW } from 'tls';
-
-import SteamAPI from 'steamapi';
-const steam = new SteamAPI(STEAM_API_KEY);
-
 
 class FeaturedGames extends React.Component {
     state = {

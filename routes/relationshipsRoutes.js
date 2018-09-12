@@ -4,20 +4,38 @@ const Relationship = mongoose.model('relationships')
 
 module.exports = app => {
 
-    app.get('/api/relationsips', async (req, res) => {
-        let users = await User.find({ inGame: true });
+    app.get('/api/relationships', async (req, res) => {
+        let relations = await Relationship.find();
         // let users = await User.find({ inGame: true })
-        res.send(users);
+        res.send(relations);
+    })
+
+    app.post('/api/relationships', (req, res) => {
+        const { userOne, userTwo, status } = req.body;
+
+        const relation = new Relationship({
+            userOne,
+            userTwo,
+            status
+        })
+
+        relation.save();
     })
 
     app.patch('/api/relationships/:id', (req, res) => {
-        let id = req.params.id;
+        let id = req.params.id
 
         let body = {
-            inGame: req.body.inGame
+            status: req.body.status
         }
 
-        User.findByIdAndUpdate(id, { $set: body }, { new: true }).then(data => res.send(data))
+        Relationship.findByIdAndUpdate(id, { $set: body }, { new: true }).then(data => res.send(data))
+    })
+
+    app.delete('/api/relationships/:id', (req, res) => {
+        let id = req.params.id
+
+        Relationship.findByIdAndRemove(id)
     })
 
 

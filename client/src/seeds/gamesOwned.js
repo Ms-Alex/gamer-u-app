@@ -24,9 +24,9 @@ const gamesObj = [
         game_link: 'https://store.steampowered.com/app/742120/DRAGON_QUEST_XI_Echoes_of_an_Elusive_Age__Digital_Edition_of_Light/'
     },
     {
-        name: 'MONSTER HUNTER: WORLD',
-        img_src: 'https://steamcdn-a.akamaihd.net/steam/apps/582010/header.jpg?t=1536192380',
-        game_link: 'https://store.steampowered.com/app/582010/MONSTER_HUNTER_WORLD/'
+        name: 'FINAL FANTASY XIV Online',
+        img_src: 'https://steamcdn-a.akamaihd.net/steam/apps/39210/header.jpg?t=1534886464',
+        game_link: 'https://store.steampowered.com/app/39210/FINAL_FANTASY_XIV_Online/'
     }
 ];
 

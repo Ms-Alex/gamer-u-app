@@ -23,7 +23,7 @@ class RecentlyPlayed extends React.Component {
         return (
             <div className="card">
                 <div className="card-body">
-                    No recent Games
+                    No recent games
                     </div>
             </div>
         )
@@ -35,9 +35,9 @@ class RecentlyPlayed extends React.Component {
         return (
             <div>
                 <h3>Your Recently Played Games</h3>
-                <ul>
+                {/* <ul> */}
                     {this.props.recentGames === [] ? this.gamesMapper(this.props.recentGames) : this.noGames()}
-                </ul>
+                {/* </ul> */}
 
             </div>
         )

@@ -10,6 +10,12 @@ module.exports = app => {
         res.send(users);
     })
 
+    app.get('/api/users/:id', (req, res) => {
+        let id = req.params.id
+
+        User.findById(id).then( data => res.send(data) )
+    })
+
     app.patch('/api/users/:id', (req, res) => {
         let id = req.params.id;
 

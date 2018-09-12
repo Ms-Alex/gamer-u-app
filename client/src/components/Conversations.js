@@ -11,10 +11,11 @@ class Conversations extends React.Component {
         return (
             <div>
                 
-                <div className="card card-nav-tabs" style={{ width: "20rem", height: "10rem" }}>
+                <div className="card card-nav-tabs" style={{ width: "20rem", height: "15rem" }}>
                     <br />
                     <div className="card-header card-header-info">
-                        <h4>Your Conversations:</h4>
+                        {/* <h4>Your Conversations:</h4> */}
+                        Your Conversations:
                     </div>
                     <ul className="list-group list-group-flush">
 
