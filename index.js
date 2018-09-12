@@ -15,12 +15,17 @@ require('./services/passport');
 
 const authRoutes = require('./routes/authRoutes');
 const usersRoutes = require('./routes/usersRoutes');
+const relationshipsRoutes = require('./routes/relationshipsRoutes');
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 const app = express();
 
-app.use(cors({ credentials: true, origin: 'http://localhost:5000' }));
+app.use(cors({ 
+    // credentials: true, 
+    origin: 'http://localhost:3000' 
+    // origin: '*' 
+}));
 app.use(bodyParser.json());
 
 // MAKE A COOKIE
@@ -38,6 +43,7 @@ app.use(passport.session());
 // CALL THIS AFTER SETTING COOKIES AND PASSPORT LOGIN SETTINGS
 authRoutes(app);
 usersRoutes(app);
+relationshipsRoutes(app);
 
 const port = process.env.PORT || 5000;
 // PORT ALSO REFERENCED IN PASSPORT.JS
@@ -48,7 +54,7 @@ let server = app.listen(port, () => {
 
 
 
-let io = socket(server);
+let io = socket.listen(server);
 
 io.on('connection', function (socket) {
 
@@ -57,6 +63,7 @@ io.on('connection', function (socket) {
     socket.on('SEND_MESSAGE', function (data) {
         io.emit('RECEIVE_MESSAGE', data);
     })
+
 
     // client.on('subscribeToTimer', (interval) => {
     //     console.log('client is subscribing to timer with interval ', interval);

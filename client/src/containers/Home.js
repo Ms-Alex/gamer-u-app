@@ -4,16 +4,29 @@ import * as actions from '../actions';
 
 // import RecommendedGames from '../components/RecommendedG';
 import RecentlyPlayed from '../components/RecentlyPlayed';
+import GameNews from '../components/GameNews';
 import FeaturedGames from '../components/FeaturedGames';
 import InGameUsers from '../components/InGameUsers';
 import Conversations from '../components/Conversations';
 import Chat from '../components/Chat';
 
+import { STEAM_API_KEY } from '../clientConfig/keys';
+
+const SteamAPI = require('steamapi');
+const steam = new SteamAPI(STEAM_API_KEY);
+
 class Home extends React.Component {
 
     componentDidMount() {
+        // return async () => {
+            // await this.props.fetchAllUsers();
+        //     await this.props.fetchFeatured();
+        // }
         this.props.fetchAllUsers();
         this.props.fetchFeatured();
+        // steam.getFeaturedGames(data => console.log('featGames: ', data))
+
+        // steam.getAppList().then( data => console.log('applist: ', data))
     }
 
     componentDidUpdate(prevProps) {
@@ -25,6 +38,7 @@ class Home extends React.Component {
 
     render() {
         // this.props.fetchAllUsers();
+        // console.log(this.props)
 
         return (
             <div className="container">
@@ -36,23 +50,28 @@ class Home extends React.Component {
 
                 <div className="row">
 
-                    <div className="col-6">
+                    <div style={{ float: "left" }} className="col-sm-5">
+                        <InGameUsers />
+                        <br />
+                        <br />
+                        <Conversations />
+                        <br />
+                        <br />
                         <Chat />
 
                     </div>
 
-                </div>
-
-                <div className="row">
-
-                    <div style={{ float: "left" }} className="col-sm-5">
-                        <InGameUsers />
-                        <Conversations />
-                    </div>
-
-                    <div style={{ float: "right", marginLeft: "2%" }} className="col-sm-5">
+                    <div style={{ float: "right", marginLeft: "3%" }} className="col-sm-5">
                         <RecentlyPlayed />
+
+                        <br />
+                        <br />
+
+                        <GameNews gameId='742120' />
+
                     </div>
+
+                   
 
                 </div>
           
@@ -64,7 +83,11 @@ class Home extends React.Component {
 };
 
 function mapStateToProps(state) {
-    return { allUsers: state.allUsers }
+    return { 
+        allUsers: state.allUsers,
+        // featGames: state.featGames 
+    }
+
 }
 
 

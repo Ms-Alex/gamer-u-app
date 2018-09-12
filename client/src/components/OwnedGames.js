@@ -6,20 +6,10 @@ import * as actions from '../actions';
 class OwnedGames extends React.Component {
 
     componentDidMount() {
-        
+        this.props.fetchOwned();
 
     }
 
-    // fetchGamesInfo = () => {
-    //     return this.props.ownedGames.map(game => async (game) => {
-    //         const res = await axios.get(`https://store.steampowered.com/api/appdetails/?appids=${game.appid}`);
-
-    //         console.log(res[`${game.appid}`].data);
-
-    //         return res[`${game.appid}`].data
-    //     });
-        
-    // }
 
     gamesMapper = (gamesArr) => {
         return gamesArr.map(game => <li key={game.appid} >
@@ -33,13 +23,13 @@ class OwnedGames extends React.Component {
     renderGamesList = () => {
         return (
             <ul>
-                {this.gamesMapper(this.props.ownedGames)}
+                {/* {this.gamesMapper(this.props.ownedGames)} */}
             </ul>
         )
     }
 
     render() {
-
+        console.log('ownedGames: ', this.props.ownedGames)
         return (
             <div>
                 <h3>Your Owned Games</h3>
@@ -57,7 +47,7 @@ class OwnedGames extends React.Component {
 function mapStateToProps(state) {
     return {
         auth: state.auth,
-
+        ownedGames: state.ownedGames
     }
 }
 

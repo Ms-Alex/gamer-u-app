@@ -11,7 +11,7 @@ class Conversations extends React.Component {
         return (
             <div>
                 
-                <div className="card card-nav-tabs" style={{ width: "20rem" }}>
+                <div className="card card-nav-tabs" style={{ width: "20rem", height: "10rem" }}>
                     <br />
                     <div className="card-header card-header-info">
                         <h4>Your Conversations:</h4>

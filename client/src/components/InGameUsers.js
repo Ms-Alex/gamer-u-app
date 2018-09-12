@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 
 class InGameUsers extends React.Component {
 
-
     usersMapper = () => {
 
-        return this.props.allUsers.map(user => <li className="list-group-item">
-            {user.username} &emsp; <i class="material-icons">
+        return this.props.allUsers.map(user => <li key={user._id} className="list-group-item">
+            🔹 {user.username} &emsp; <i className="material-icons">
                 message </i>
         </li>)
     }
@@ -18,13 +17,7 @@ class InGameUsers extends React.Component {
         return (
             <div>
 
-                {this.props.auth !== null ? console.log('props ', this.props.auth.username) : console.log('props ',this.props)}
-
-                {console.log('auth: ', this.props.auth)}
-                {console.log('users: ', this.props.allUsers)}
-        
-
-                <div className="card card-nav-tabs" style={{ width: "20rem" }}>
+                <div className="card card-nav-tabs" style={{ width: "20rem", height: "10rem" }}>
                     <br />
                     <div className="card-header card-header-info">
                         <h4>Message Online Users:</h4>

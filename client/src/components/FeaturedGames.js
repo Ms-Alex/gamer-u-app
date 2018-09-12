@@ -1,46 +1,39 @@
 import React from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 // import * as actions from '../actions';
 
 import { STEAM_API_KEY } from '../clientConfig/keys'
 // import { CLIENT_RENEG_WINDOW } from 'tls';
 
-const SteamAPI = require('steamapi');
+import SteamAPI from 'steamapi';
 const steam = new SteamAPI(STEAM_API_KEY);
 
 
 class FeaturedGames extends React.Component {
     state = {
-        featGames: [], 
-        
-    }
-
-    componentWillMount = () => {
-        steam.getFeaturedGames().then( data => this.setState({
-            featGames: data.featured_win
-        }) )
-        
+        featGames: [],      
     }
 
     featMapper = (arr) => {
-        let gamesCarousel = []
-        arr.slice(0, 1).forEach(game => gamesCarousel = [...gamesCarousel, <div key={game.id} className="carousel-item active">
-            <img className="d-block w-100" src={game.large_capsule_image} alt="game.name"></img>
-    </div>])
+        if (this.props.featGames) {
+            let gamesCarousel = []
+            arr.slice(0, 1).forEach(game => gamesCarousel = [...gamesCarousel, <div key={game.id} className="carousel-item active">
+                <img className="d-block w-100" src={game.large_capsule_image} alt="game.name"></img>
+            </div>])
 
-        arr.slice(1, 5).forEach(game => gamesCarousel = [...gamesCarousel, <div key={game.id} className="carousel-item">
-            <img className="d-block w-100" src={game.large_capsule_image} alt="game.name"></img>
-        </div>])
-        
-        return gamesCarousel
+            arr.slice(1, 5).forEach(game => gamesCarousel = [...gamesCarousel, <div key={game.id} className="carousel-item">
+                <img className="d-block w-100" src={game.large_capsule_image} alt="game.name"></img>
+            </div>])
+
+            return gamesCarousel
+        }
     }
 
 
     render() {
-        console.log(this.state.featGames);
          
         return (
-            <div  >
+            <div>
                 <h2 className="d-flex justify-content-center">Steam's Top Trending Games</h2>
 
 
@@ -58,7 +51,7 @@ class FeaturedGames extends React.Component {
 
                         <div className="carousel-inner">
 
-                            {this.featMapper(this.state.featGames)}
+                            {this.featMapper(this.props.featGames)}
 
                         </div>
 
@@ -89,5 +82,9 @@ class FeaturedGames extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+    return { featGames: state.featGames }
+}
 
-export default (FeaturedGames);
+
+export default connect(mapStateToProps)(FeaturedGames);

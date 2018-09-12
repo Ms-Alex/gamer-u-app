@@ -10,7 +10,6 @@ class FriendsInProfile extends React.Component {
 
                 <div className="card card-nav-tabs" style={{ width: "20rem" }}>
                     <br />
-                    <br />
 
                     <div className="card-header card-header-info d-flex p-2">
                         <i className="material-icons ">
@@ -22,22 +21,26 @@ class FriendsInProfile extends React.Component {
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">None yet</li>
                     </ul>
+                </div>
 
-                    <br />
+                <br />
+                {/* <hr style={{ width: "70%", align: "left" }} /> */}
+                <br />
+
+
+                <div className="card card-nav-tabs" style={{ width: "20rem" }}>
                     <br />
 
                     <div className="card-header card-header-info d-flex p-2">
-                        <i className="material-icons">
+                        <i className="material-icons ">
                             people
-                        </i>  
+                        </i>
                         &emsp;Your Friends:
                     </div>
 
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item">No friends yet</li>
+                        <li className="list-group-item">None yet</li>
                     </ul>
-
-                    <br />
                 </div>
 
                 
@@ -46,4 +49,4 @@ class FriendsInProfile extends React.Component {
     }
 }
 
-export default FriendsInProfile
+export default FriendsInProfile;
