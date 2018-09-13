@@ -15,7 +15,10 @@ class Conversations extends React.Component {
                     <br />
                     <div className="card-header card-header-info">
                         {/* <h4>Your Conversations:</h4> */}
-                        Your Conversations:
+                        <i class="material-icons">
+                            question_answer
+                        </i>
+                        &emsp;Your Conversations:
                     </div>
                     <ul className="list-group list-group-flush">
 

@@ -20,15 +20,15 @@ class UserProHeader extends React.Component {
                     // <img src={this.props.auth.avatar} alt="avatar" style={{ borderRadius: '50%', width: '100px', height: '100px' }} />
                     // <h3>{this.props.auth.username}'s Profile Page</h3>
 
-                    <div class="card text-center">
-                        <div class="card-header">
+                    <div className="card text-center">
+                        <div className="card-header">
                                 
                             <img src={this.props.auth.avatar} alt="avatar" style={{ borderRadius: '50%', width: '80px', height: '80px' }} />
                                 
                         </div>
 
-                        <div class="card-body">
-                            <h4 class="card-title">{this.props.auth.username}'s Profile Page</h4>
+                        <div className="card-body">
+                            <h4 className="card-title">{this.props.auth.username}'s Profile Page</h4>
                             {/* <p class="card-text">I like playing RPGs</p> */}
                         </div>
                     </div>

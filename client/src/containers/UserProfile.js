@@ -5,25 +5,29 @@ import UserProHeader from '../components/UserProHeader';
 import FriendsInProfile from '../components/FriendsInProfile'
 // import OwnedGames from '../components/OwnedGames';
 
-const UserProfile = () => {
+class UserProfile extends React.Component {
+    
+    // componentDidMount
 
-    return (
-        <div className="container">
-            <br />
-            <UserProHeader />
+    render() {
+        return (
+            <div className="container">
+                <br />
+                <UserProHeader />
 
-            <div className="row">
+                <div className="row">
 
-                <FriendsInProfile />
+                    <FriendsInProfile />
 
-                {/* FETCHED */}
-                {/* <OwnedGames /> */}
+                    {/* FETCHED */}
+                    {/* <OwnedGames /> */}
 
-                <GamesOwned />
+                    <GamesOwned />
 
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
     
 }
 

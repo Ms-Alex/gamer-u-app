@@ -35,7 +35,10 @@ module.exports = app => {
     app.delete('/api/relationships/:id', (req, res) => {
         let id = req.params.id
 
-        Relationship.findByIdAndRemove(id)
+        Relationship.findByIdAndRemove(id, function (err) {
+            if (err) return next(err);
+            res.send('Deleted successfully!');
+        })
     })
 
 
