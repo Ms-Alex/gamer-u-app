@@ -17,7 +17,6 @@ class FriendsInProfile extends React.Component {
     componentDidMount = () => {
         // this.props.fetchPending();
         this.props.fetchFriends()
-        // .then(() => this.mapFriends() )
 
         this.mapFriends();
 

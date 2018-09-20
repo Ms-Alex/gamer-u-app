@@ -1,6 +1,6 @@
 import React from 'react';
 import coolSteamButt from '../steam_cool_login.png';
-import background from '../maxresdefault_bg.jpg';
+import gameController from '../Game_pad.png';
 
 
 const Landing = (props) => {
@@ -16,6 +16,8 @@ const Landing = (props) => {
                 <img src={coolSteamButt} alt="Steam Logo" style={{ height: "8em" , verticalAlign: 'middle' }} />
                 {/* <p>Click for Steam Login</p> */}
             </a> 
+            <br />
+            {/* <img scr={gameController} alt="Game Controller" /> */}
 
             
         </div>
