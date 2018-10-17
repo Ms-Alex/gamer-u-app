@@ -29,7 +29,7 @@ class OwnedGames extends React.Component {
     }
 
     render() {
-        console.log('ownedGames: ', this.props.ownedGames)
+        console.log('ownedGames: ', this.props.ownedGames);
         return (
             <div>
                 <h3>Your Owned Games</h3>

@@ -10,6 +10,7 @@ class UserProfile extends React.Component {
     // componentDidMount
 
     render() {
+
         return (
             <div className="container">
                 <br />
@@ -20,6 +21,8 @@ class UserProfile extends React.Component {
                     <FriendsInProfile />
 
                     {/* FETCHED */}
+                    {/* <OwnedGames /> */}
+
                     {/* <OwnedGames /> */}
 
                     <GamesOwned />

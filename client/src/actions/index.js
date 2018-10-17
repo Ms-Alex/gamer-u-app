@@ -40,8 +40,10 @@ export const fetchRecentlyPlayed = () => {
 };
 
 export const fetchFeatured = () => {
+    // steam.getGameDetails('324510').then(data => console.log('game data: ', data));
 
     return async dispatch => {
+
         await steam.getFeaturedGames().then((featGames) => dispatch({ type: FETCH_FEATURED_GAMES, payload: featGames.featured_win }) )
         
     }
@@ -52,14 +54,25 @@ export const fetchOwned = () => {
     return async dispatch => {
         const userRes = await axios.get('/api/current_user');
 
-        let gameData = []
-
         await steam.getUserOwnedGames(`${userRes.data.steamId}`)
             .then( async data => {
-                await data.forEach( async game => {
-                    await steam.getGameDetails(`${game.appid}`).then( data => gameData = [...gameData, data] )
+                console.log(data);
+
+                // let gameData = await Promise.all(data.map( async game => {
+                let gameData = await Promise.all(data.map( async game => {
+                    let gameDetails = await steam.getGameDetails(`${game.appID}`);
+                    console.log(gameDetails);
+
+                    // if (gameDetails.success === true) {
+                        return gameDetails;
+                    // }
+                    // return 'unsuccessful';
                 })
-            }).then( () => dispatch({ type: FETCH_OWNED_GAMES, payload: gameData }) )
+            )
+                console.log('gameData: ', gameData)
+                return gameData;
+            })
+            .then( gameData => dispatch({ type: FETCH_OWNED_GAMES, payload: gameData }) )
     }
 
 };

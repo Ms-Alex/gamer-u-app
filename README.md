@@ -1,7 +1,7 @@
 # GamerU
 > A social application for Steam users! Make friends using the global chat feature. Follow someone, too!
 
-Created with Node with Express backend and a Javascript React frontend, through Steam Login Auth, users can communicate with other Steam gamers and make friends! Need someone to play with on Rocket League? Meet them through GamerU on the global chat, or Follow a certain gamer!
+Created with Node with Express backend and a Javascript React frontend, through Steam Login Auth, users can communicate with other Steam gamers and make friends! Need someone to play with on Rocket League? Meet them through GamerU on the global chat, or follow a certain gamer!
 
 More details to come.
 
