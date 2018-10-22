@@ -7,16 +7,11 @@ import GameCard from '../components/GameCard';
 class RecentlyPlayed extends React.Component {
 
     componentDidMount() {
-        if(this.props.auth) {
-            this.props.fetchRecentlyPlayed(this.props.auth.steamId);
-        }
-
+        this.props.fetchRecentlyPlayed();
     }
 
     gamesMapper = (gamesArr) => {
-        return gamesArr.map(game => <li>
-            <GameCard game={game} />
-        </li>)
+        return gamesArr.map(game => <GameCard game={game} />)
     }
 
     noGames = () => {
@@ -30,13 +25,13 @@ class RecentlyPlayed extends React.Component {
     }
 
     render() {
-        // console.log(this.props)
+        console.log(this.props.recentGames)
 
         return (
             <div>
                 <h3>Your Recently Played Games</h3>
                 {/* <ul> */}
-                    {this.props.recentGames === [] ? this.gamesMapper(this.props.recentGames) : this.noGames()}
+                    {this.props.games.length !== 0 ? this.gamesMapper(this.props.games) : this.noGames()}
                 {/* </ul> */}
 
             </div>

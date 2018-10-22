@@ -4,7 +4,7 @@ import * as actions from '../actions';
 
 // import RecommendedGames from '../components/RecommendedG';
 import RecentlyPlayed from '../components/RecentlyPlayed';
-import GameNews from '../components/GameNews';
+// import GameNews from '../components/GameNews';
 import FeaturedGames from '../components/FeaturedGames';
 import InGameUsers from '../components/InGameUsers';
 // import Conversations from '../components/Conversations';
@@ -12,11 +12,15 @@ import Chat from '../components/Chat';
 
 
 class Home extends React.Component {
+    state = {
+        gameRecents: ''
+    }
 
     componentDidMount() {
         this.props.fetchUser();
         this.props.fetchAllUsers();
         this.props.fetchFeatured();
+        this.props.fetchRecentlyPlayed();
 
     }
 
@@ -54,12 +58,12 @@ class Home extends React.Component {
                     </div>
 
                     <div style={{ float: "right", marginLeft: "3%" }} className="col-sm-5">
-                        <RecentlyPlayed />
+                        <RecentlyPlayed games={this.props.recentGames} />
 
                         <br />
                         <br />
 
-                        <GameNews gameId='742120' />
+                        {/* <GameNews gameId='742120' /> */}
 
                     </div>
 
@@ -77,9 +81,9 @@ class Home extends React.Component {
 function mapStateToProps(state) {
     return { 
         allUsers: state.allUsers,
-        // featGames: state.featGames 
+        // featGames: state.featGames
+        recentGames: state.recentGames
     }
-
 }
 
 

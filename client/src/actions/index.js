@@ -27,20 +27,28 @@ export const fetchAllUsers = () => {
 
 export const fetchRecentlyPlayed = () => {
 
-    return async (dispatch) => {
+    return async dispatch => {
         const userRes = await axios.get('/api/current_user');
-        const res = await axios.get(`http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=${STEAM_API_KEY}&steamid=${userRes.data.steamId}&count=5&format=json`);
 
-        if (res.data.response.games) {
-            dispatch({ type: FETCH_RECENTLY_PLAYED, payload: res.data.response.games });          
-        } else {
-            dispatch({ type: FETCH_RECENTLY_PLAYED, payload: [] });            
-        }
+        await steam.getUserRecentGames(`${userRes.data.steamId}`)
+            .then(async data => {
+                console.log('Data:', data);
+                const recentsData = [];
+
+                data.forEach(async game => {
+                    let gameDetails = await steam.getGameDetails(`${game.appID}`);
+
+                    recentsData.push(gameDetails);
+                })
+                console.log('gameData Arr: ', recentsData)
+
+                return recentsData;
+            })
+            .then(recentsData => dispatch({ type: FETCH_RECENTLY_PLAYED, payload: recentsData }))
     }
 };
 
 export const fetchFeatured = () => {
-    // steam.getGameDetails('324510').then(data => console.log('game data: ', data));
 
     return async dispatch => {
 
@@ -57,22 +65,18 @@ export const fetchOwned = () => {
         await steam.getUserOwnedGames(`${userRes.data.steamId}`)
             .then( async data => {
                 console.log(data);
+                const ownedData = [];
 
-                // let gameData = await Promise.all(data.map( async game => {
-                let gameData = await Promise.all(data.map( async game => {
+                data.forEach( async game => {
                     let gameDetails = await steam.getGameDetails(`${game.appID}`);
-                    console.log(gameDetails);
+                    // console.log(gameDetails);
 
-                    // if (gameDetails.success === true) {
-                        return gameDetails;
-                    // }
-                    // return 'unsuccessful';
+                    ownedData.push(gameDetails);
                 })
-            )
-                console.log('gameData: ', gameData)
-                return gameData;
+
+                return ownedData;
             })
-            .then( gameData => dispatch({ type: FETCH_OWNED_GAMES, payload: gameData }) )
+            .then( ownedData => dispatch({ type: FETCH_OWNED_GAMES, payload: ownedData }) )
     }
 
 };

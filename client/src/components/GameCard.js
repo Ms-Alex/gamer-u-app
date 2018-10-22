@@ -5,9 +5,14 @@ class GameCard extends React.Component {
     render() {
 
         return (
-            <div>
-                <h5>{this.props.game.name}</h5>
-                <img src={`https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/${this.props.game.appid}/${this.props.game.img_logo_url}.jpg`} alt={this.props.game.name} />
+            <div className="card text-center" style={{ width: "30rem" }}>
+                <div className="card-body">
+                    <img className="card-img-top" src={this.props.game.header_image} alt={this.props.game.name} style={{ maxWidth: '100%' }} />
+
+                    <h4 className="card-title">{this.props.game.name}</h4>
+
+                    <a href={this.props.game.website} className="btn btn-primary" rel="noopener noreferrer" target="_blank"  >View Game Site</a>
+                </div>
             </div>
         )
     }

@@ -30,7 +30,7 @@ class GameNews extends React.Component {
                     <div className="card-body">
                         <h4 className="card-title">{news.title}</h4>
                         {/* Parser({news.contents}) */}
-                        <p className="card-text" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{`${news.contents}`}</p>
+                        {/* <p className="card-text" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{`${news.contents}`}</p> */}
                         
                         <a href={news.url} className="card-link" target="_blank">View Article</a>
 
@@ -51,6 +51,7 @@ class GameNews extends React.Component {
     }
 
     render() {
+        console.log(this.state.gameData)
         
         return (
             <div>

@@ -1,13 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 import GamesOwned from '../seeds/gamesOwned';
 import UserProHeader from '../components/UserProHeader';
 import FriendsInProfile from '../components/FriendsInProfile'
-// import OwnedGames from '../components/OwnedGames';
+import OwnedGames from '../components/OwnedGames';
 
 class UserProfile extends React.Component {
     
-    // componentDidMount
+    componentDidMount(){
+        this.props.fetchOwned();
+    }
 
     render() {
 
@@ -21,11 +25,9 @@ class UserProfile extends React.Component {
                     <FriendsInProfile />
 
                     {/* FETCHED */}
-                    {/* <OwnedGames /> */}
+                    <OwnedGames games={this.props.ownedGames} />
 
-                    {/* <OwnedGames /> */}
-
-                    <GamesOwned />
+                    {/* <GamesOwned /> */}
 
                 </div>
             </div>
@@ -34,5 +36,12 @@ class UserProfile extends React.Component {
     
 }
 
+function mapStateToProps(state) {
+    return {
+        auth: state.auth,
+        ownedGames: state.ownedGames
+    }
+}
 
-export default UserProfile;
+
+export default connect(mapStateToProps, actions) (UserProfile);
