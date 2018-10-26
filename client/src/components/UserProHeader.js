@@ -13,12 +13,6 @@ class UserProHeader extends React.Component {
     renderView = () => {
         if (this.props.auth) {
             return (
-                // <React.Fragment>
-
-
-
-                    // <img src={this.props.auth.avatar} alt="avatar" style={{ borderRadius: '50%', width: '100px', height: '100px' }} />
-                    // <h3>{this.props.auth.username}'s Profile Page</h3>
 
                     <div className="card text-center">
                         <div className="card-header">
