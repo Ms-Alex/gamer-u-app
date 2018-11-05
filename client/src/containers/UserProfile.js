@@ -22,7 +22,7 @@ class UserProfile extends React.Component {
           <FriendsInProfile />
 
           {/* FETCHED */}
-          <OwnedGames games={this.props.ownedGames} />
+          <OwnedGames fetchOwned={this.props.fetchOwned} games={this.props.ownedGames} />
 
         </div>
       </div>

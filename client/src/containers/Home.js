@@ -35,7 +35,7 @@ class Home extends React.Component {
             <div className="container">
 
                 <div>
-                    <FeaturedGames />
+                    <FeaturedGames featGames={this.props.featGames} />
                 </div>
 
                 <div className="row">
@@ -74,7 +74,7 @@ class Home extends React.Component {
 function mapStateToProps(state) {
     return { 
         allUsers: state.allUsers,
-        // featGames: state.featGames
+        featGames: state.featGames,
         recentGames: state.recentGames
     }
 }

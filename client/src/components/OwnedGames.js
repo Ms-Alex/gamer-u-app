@@ -1,28 +1,16 @@
 import React from 'react';
-import { connect } from "react-redux";
-
-import * as actions from "../actions";
 import GameCard from '../components/GameCard';
 
 
 class OwnedGames extends React.Component {
-
-    // componentDidMount() {
-    //     this.props.fetchOwned();
-    // }
+    componentWillMount() {
+        this.props.fetchOwned();
+    }
+    
 
   gamesMapper = gamesArr => {
       return gamesArr.map(game => <GameCard game={game} key={game.steam_appid} />);
 
-    // return gamesArr.map(game => <div className="card text-center" style={{ width: "30rem" }}>
-    //     <div className="card-body">
-    //         <img className="card-img-top" src={game.header_image} alt={game.name} style={{ maxWidth: '100%' }} />
-
-    //         <h4 className="card-title">{game.name}</h4>
-
-    //         <a href={game.website} className="btn btn-primary" rel="noopener noreferrer" target="_blank"  >View Game Site</a>
-    //     </div>
-    // </div>)
   };
 
   renderGamesList = () => {
@@ -53,15 +41,4 @@ class OwnedGames extends React.Component {
 };
 
 
-function mapStateToProps(state) {
-  return {
-    ownedGames: state.ownedGames
-  };
-}
-
-
-// export default connect(
-//   mapStateToProps,
-//   actions
-// ) (OwnedGames);
 export default OwnedGames;

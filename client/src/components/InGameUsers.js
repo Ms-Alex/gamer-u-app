@@ -19,7 +19,6 @@ class InGameUsers extends React.Component {
             status: 2
         }
         axios.post('/api/relationships', body).then(() => alert('Successfully Added') )
-        // console.log('addPerson Clicked');
         // alert('Feature Yet To Be Added')
     }
 

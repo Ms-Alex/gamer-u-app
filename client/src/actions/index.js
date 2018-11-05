@@ -65,32 +65,6 @@ export const fetchFeatured = () => {
 };
 
 export const fetchOwned = () => {
-    // return async dispatch => {
-    //     const userRes = await axios.get('/api/current_user');
-    //     await axios.get(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${STEAM_API_KEY}&steamid=${userRes.data.steamId}&format=json`)
-    //       .then(data => {
-    //         console.log("steam data", data);
-    //         const ownedData = [];
-    //         if (data.data.response.games) {
-    //           data.data.response.games.forEach(async game => {
-    //             let gameDetails = await axios.get(`https://store.steampowered.com/api/appdetails?appids=${game.appid}`);
-    //             console.log("steam gameDetails: ", gameDetails.data[game.appid].data);
-    //             // console.log("steam gameDetails: ", gameDetails);
-
-    //             if (gameDetails.data[game.appid].data) {
-    //             //   ownedData.push(gameDetails.data[game.appid]);
-    //             }
-    //             return ownedData;
-    //           });
-    //         }
-    //         console.log("owned Data", ownedData)
-    //         return ownedData;
-    //       })
-    //       .then(ownedData =>
-    //         dispatch({ type: FETCH_OWNED_GAMES, payload: ownedData })
-    //       );
-    // }
-
 
     return async dispatch => {
         const userRes = await axios.get('/api/current_user');

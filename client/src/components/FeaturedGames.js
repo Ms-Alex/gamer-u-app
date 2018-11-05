@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-// import * as actions from '../actions';
 
 
 class FeaturedGames extends React.Component {
@@ -76,9 +74,5 @@ class FeaturedGames extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return { featGames: state.featGames }
-}
 
-
-export default connect(mapStateToProps)(FeaturedGames);
+export default (FeaturedGames);
