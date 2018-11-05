@@ -2,9 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-// import RecommendedGames from '../components/RecommendedG';
 import RecentlyPlayed from '../components/RecentlyPlayed';
-// import GameNews from '../components/GameNews';
 import FeaturedGames from '../components/FeaturedGames';
 import InGameUsers from '../components/InGameUsers';
 // import Conversations from '../components/Conversations';
@@ -32,8 +30,6 @@ class Home extends React.Component {
     }
 
     render() {
-        // this.props.fetchAllUsers();
-        // console.log(this.props)
 
         return (
             <div className="container">
@@ -41,7 +37,6 @@ class Home extends React.Component {
                 <div>
                     <FeaturedGames />
                 </div>
-
 
                 <div className="row">
 
@@ -62,8 +57,6 @@ class Home extends React.Component {
 
                         <br />
                         <br />
-
-                        {/* <GameNews gameId='742120' /> */}
 
                     </div>
 

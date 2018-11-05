@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import axios from 'axios';
 import * as actions from './actions';
@@ -26,11 +26,12 @@ class App extends Component {
         <Router>
           <React.Fragment>
             <Navbar />
-
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/user-profile" component={UserProfile} />
-            <Route exact path="/game-profile" component={GameProfile} />
+            <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/home" component={Home} />
+              <Route exact path="/user-profile" component={UserProfile} />
+              <Route exact path="/game-profile" component={GameProfile} />
+            </Switch>
 
           </React.Fragment>
         </Router>

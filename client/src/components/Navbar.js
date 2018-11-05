@@ -11,7 +11,6 @@ class Navbar extends React.Component {
     renderLoggedIn = () => {
         return (
             <React.Fragment>
-
                 
                 <li className="nav-item navbar-text">
                     Welcome, {this.props.auth.username}!&emsp;
@@ -68,7 +67,7 @@ class Navbar extends React.Component {
         return (
             <React.Fragment>
 
-                <nav className="navbar navbar-expand-lg bg-info" role="navigation" >
+                <nav className="navbar navbar-expand-lg bg-info"  >
 
                     <div className="container">
 

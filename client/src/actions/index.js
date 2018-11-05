@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_RECENTLY_PLAYED, FETCH_FEATURED_GAMES, FETCH_ALL_USERS, FETCH_OWNED_GAMES, FETCH_PENDING_REQUESTS, FETCH_SENT_REQUESTS, FETCH_FRIENDS } from './types';
+import { FETCH_USER, FETCH_RECENTLY_PLAYED, FETCH_FEATURED_GAMES, FETCH_ALL_USERS, FETCH_OWNED_GAMES, FETCH_PENDING_REQUESTS, FETCH_FRIENDS } from './types';
 import { STEAM_API_KEY } from '../clientConfig/keys';
 
 import SteamAPI from 'steamapi';
@@ -30,9 +30,10 @@ export const fetchRecentlyPlayed = () => {
     return async dispatch => {
         const userRes = await axios.get('/api/current_user');
 
+        // http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=XXXXXXXXXXXXXXXXX&steamid=76561197960434622&format=json
         await steam.getUserRecentGames(`${userRes.data.steamId}`)
             .then(async data => {
-                console.log('Data:', data);
+                // console.log('Data:', data);
                 const recentsData = [];
 
                 data.forEach(async game => {
@@ -40,7 +41,7 @@ export const fetchRecentlyPlayed = () => {
 
                     recentsData.push(gameDetails);
                 })
-                console.log('gameData Arr: ', recentsData)
+                // console.log('gameData Arr: ', recentsData)
 
                 return recentsData;
             })
@@ -52,35 +53,65 @@ export const fetchFeatured = () => {
 
     return async dispatch => {
 
-        await steam.getFeaturedGames().then((featGames) => dispatch({ type: FETCH_FEATURED_GAMES, payload: featGames.featured_win }) )
-        
+        // await steam.getFeaturedGames()
+        await axios.get(`https://store.steampowered.com/api/featured`).then((featGames) => {
+            // console.log("featGames", featGames.data.featured_win);
+            dispatch({
+              type: FETCH_FEATURED_GAMES,
+              payload: featGames.data.featured_win
+            });
+        } )    
     }
 };
 
 export const fetchOwned = () => {
+    // return async dispatch => {
+    //     const userRes = await axios.get('/api/current_user');
+    //     await axios.get(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${STEAM_API_KEY}&steamid=${userRes.data.steamId}&format=json`)
+    //       .then(data => {
+    //         console.log("steam data", data);
+    //         const ownedData = [];
+    //         if (data.data.response.games) {
+    //           data.data.response.games.forEach(async game => {
+    //             let gameDetails = await axios.get(`https://store.steampowered.com/api/appdetails?appids=${game.appid}`);
+    //             console.log("steam gameDetails: ", gameDetails.data[game.appid].data);
+    //             // console.log("steam gameDetails: ", gameDetails);
+
+    //             if (gameDetails.data[game.appid].data) {
+    //             //   ownedData.push(gameDetails.data[game.appid]);
+    //             }
+    //             return ownedData;
+    //           });
+    //         }
+    //         console.log("owned Data", ownedData)
+    //         return ownedData;
+    //       })
+    //       .then(ownedData =>
+    //         dispatch({ type: FETCH_OWNED_GAMES, payload: ownedData })
+    //       );
+    // }
+
 
     return async dispatch => {
         const userRes = await axios.get('/api/current_user');
 
         await steam.getUserOwnedGames(`${userRes.data.steamId}`)
-            .then( async data => {
+            .then(async data => {
                 console.log(data);
                 const ownedData = [];
 
-                data.forEach( async game => {
+                data.forEach(async game => {
                     let gameDetails = await steam.getGameDetails(`${game.appID}`);
-                    // console.log(gameDetails);
+                    console.log(gameDetails);
 
                     ownedData.push(gameDetails);
                 })
 
                 return ownedData;
             })
-            .then( ownedData => dispatch({ type: FETCH_OWNED_GAMES, payload: ownedData }) )
+            .then(ownedData => dispatch({ type: FETCH_OWNED_GAMES, payload: ownedData }))
     }
-
 };
-
 
 export const fetchPending = () => {
 

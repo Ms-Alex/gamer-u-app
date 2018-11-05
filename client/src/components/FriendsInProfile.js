@@ -109,7 +109,7 @@ class FriendsInProfile extends React.Component {
     handleDelete = (friendId) => {
         let relationObj = this.props.friends.find(relation => (relation.userOne === this.props.auth._id && relation.userTwo === friendId) )
         
-        axios.delete(`/api/relationships/${relationObj._id}`) .then(() => this.props.fetchFriends() ).then(() => this.mapFriends())
+        axios.delete(`/api/relationships/${relationObj._id}`).then(() => this.props.fetchFriends() ).then(() => this.mapFriends())
     }
 
     handleMessButt = () => {
@@ -138,9 +138,6 @@ class FriendsInProfile extends React.Component {
     }
     
     render() {
-
-        console.log(this.props.friends)
-        console.log(this.state.friendsObj);
 
         return (
             <div style={{ float: "left" }} className="col-sm-5" >

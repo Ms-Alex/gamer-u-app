@@ -11,7 +11,9 @@ class RecentlyPlayed extends React.Component {
     }
 
     gamesMapper = (gamesArr) => {
-        return gamesArr.map(game => <GameCard game={game} />)
+        return gamesArr.map(game => (
+          <GameCard game={game} key={game.steam_appid} />
+        ));
     }
 
     noGames = () => {
@@ -41,7 +43,6 @@ class RecentlyPlayed extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        auth: state.auth,
         recentGames: state.recentGames
     }
 }

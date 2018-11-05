@@ -15,7 +15,7 @@ class Conversations extends React.Component {
                     <br />
                     <div className="card-header card-header-info">
                         {/* <h4>Your Conversations:</h4> */}
-                        <i class="material-icons">
+                        <i className="material-icons">
                             question_answer
                         </i>
                         &emsp;Your Conversations:
