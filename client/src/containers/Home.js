@@ -58,13 +58,10 @@ class Home extends React.Component {
                         <br />
                         <br />
 
-                    </div>
-
-                   
+                    </div> 
 
                 </div>
           
-
             </div>
         )
     }

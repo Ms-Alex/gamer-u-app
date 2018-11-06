@@ -1,5 +1,6 @@
 import React from 'react';
 import GameCard from '../components/GameCard';
+import UUID from 'uuid';
 
 
 class OwnedGames extends React.Component {
@@ -9,7 +10,7 @@ class OwnedGames extends React.Component {
     
 
   gamesMapper = gamesArr => {
-      return gamesArr.map(game => <GameCard game={game} key={game.steam_appid} />);
+      return gamesArr.map(game => <GameCard game={game} key={UUID()} />);
 
   };
 

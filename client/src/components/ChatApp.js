@@ -7,6 +7,11 @@ import ChatInput from './ChatInput';
 
 class ChatApp extends React.Component {
     socket = {};
+
+    // state = {
+    //     messages: [],
+    //     socket = io('localhost:5000')
+    // }
     
     constructor(props) {
         super(props);

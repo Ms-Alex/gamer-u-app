@@ -1,4 +1,5 @@
 import React from 'react';
+import UUID from 'uuid';
 
 
 class FeaturedGames extends React.Component {
@@ -9,11 +10,11 @@ class FeaturedGames extends React.Component {
     featMapper = (arr) => {
         if (this.props.featGames) {
             let gamesCarousel = []
-            arr.slice(0, 1).forEach(game => gamesCarousel = [...gamesCarousel, <div key={game.id} className="carousel-item active">
+            arr.slice(0, 1).forEach(game => gamesCarousel = [...gamesCarousel, <div key={UUID()} className="carousel-item active">
                 <img className="d-block w-100" src={game.large_capsule_image} alt="game.name"></img>
             </div>])
 
-            arr.slice(1, 5).forEach(game => gamesCarousel = [...gamesCarousel, <div key={game.id} className="carousel-item">
+            arr.slice(1, 5).forEach(game => gamesCarousel = [...gamesCarousel, <div key={UUID()} className="carousel-item">
                 <img className="d-block w-100" src={game.large_capsule_image} alt="game.name"></img>
             </div>])
 

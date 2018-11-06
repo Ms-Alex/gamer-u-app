@@ -1,12 +1,13 @@
 import React from 'react';
 import GameCard from '../components/GameCard';
+import UUID from 'uuid';
 
 
 class RecentlyPlayed extends React.Component {
 
     gamesMapper = (gamesArr) => {
         return gamesArr.map(game => (
-          <GameCard game={game} key={game.steam_appid} />
+          <GameCard game={game} key={UUID()} />
         ));
     }
 
