@@ -1,5 +1,6 @@
 import React from 'react';
 import Message from './Message';
+import UUID from 'uuid';
 
 class Messages extends React.Component {
     componentDidUpdate() {
@@ -12,7 +13,7 @@ class Messages extends React.Component {
         const messages = this.props.messages.map((message, i) => {
             return (
                 <Message
-                    key={i}
+                    key={UUID()}
                     username={message.username}
                     message={message.message}
                     fromMe={message.fromMe} />
