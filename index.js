@@ -22,8 +22,8 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 const app = express();
 
-app.use(cors({ 
-    credentials: true, 
+app.use(cors({
+    credentials: true,
     // origin: 'http://localhost:3000' 
     // origin: '*' 
 }));
@@ -51,8 +51,6 @@ const port = process.env.PORT || 5000;
 let server = app.listen(port, () => {
     console.log(`Server started on port ${port}`)
 });
-
-
 
 
 let io = socket.listen(server);
