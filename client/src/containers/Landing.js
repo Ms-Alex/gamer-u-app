@@ -7,7 +7,7 @@ const Landing = (props) => {
     const gameControllers = () => {
         let res = []
         for(let i =0; i < 5; i ++) {
-            res.push(<img src={gameController} alt="Game Controller" style={{ width: "10%", padding: "1%" }} />);
+            res.push(<img key={i} src={gameController} alt="Game Controller" style={{ width: "10%", padding: "1%" }} />);
         }
         return res;
     }
