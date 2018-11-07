@@ -31,39 +31,31 @@ class Home extends React.Component {
 
     render() {
 
-        return (
-            <div className="container">
-
-                <div>
-                    <FeaturedGames featGames={this.props.featGames} />
-                </div>
-
-                <div className="row">
-
-                    <div style={{ float: "left" }} className="col-sm-5">
-                        <InGameUsers />
-                        <br />
-                        {/* <Conversations /> */}
-
-                        <hr />
-                        <br />
-
-                        <Chat />
-
-                    </div>
-
-                    <div style={{ float: "right", marginLeft: "3%" }} className="col-sm-5">
-                        <RecentlyPlayed games={this.props.recentGames} />
-
-                        <br />
-                        <br />
-
-                    </div> 
-
-                </div>
-          
+        return <div className="container">
+            <div>
+              <FeaturedGames featGames={this.props.featGames} />
             </div>
-        )
+
+            <div className="row">
+              <div className=" col-sm-10 col-lg-5" style={{ margin: "1%" }}>
+                <InGameUsers />
+                <br />
+                {/* <Conversations /> */}
+
+                <hr />
+                <br />
+
+                <Chat />
+              </div>
+
+                <div className=" col-sm-10 col-lg-5" style={{ margin: "1%" }}>
+                <RecentlyPlayed games={this.props.recentGames} />
+
+                <br />
+                <br />
+              </div>
+            </div>
+          </div>;
     }
 
 };

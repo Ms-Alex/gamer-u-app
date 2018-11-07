@@ -13,20 +13,20 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    return (
-      <div className="container">
+    return <div className="container">
         <br />
         <UserProHeader />
 
         <div className="row">
-          <FriendsInProfile />
+          <div className=" col-sm-10 col-lg-5" >
+            <FriendsInProfile />
+          </div>
 
-          {/* FETCHED */}
-          <OwnedGames fetchOwned={this.props.fetchOwned} games={this.props.ownedGames} />
-
+          <div className=" col-sm-10 col-lg-5">
+            <OwnedGames fetchOwned={this.props.fetchOwned} games={this.props.ownedGames} />
+          </div>
         </div>
-      </div>
-    );
+      </div>;
   }
 }
 
